@@ -12,6 +12,14 @@ public class UserInterface {
 		
 	}
 	
+	public void promptToPlayAgain(){
+		
+		System.out.println("Return to main menu and play again?\n"
+				+ "(1) Yes\n"
+				+ "(2) No\n");
+		
+	}
+	
 	//Build option method
 	
 }
