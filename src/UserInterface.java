@@ -6,7 +6,8 @@ public class UserInterface {
 		String menu = "Nim Game:\n" 
 		+ "(1) Play a Player vs Player game\n"
 		+ "(2) Play a Player vs Computer game\n"
-		+ "(3) Start a Computer vs Computer game\n";
+		+ "(3) Start a Computer vs Computer game\n"
+		+ "(4) Exit";
 		
 		System.out.println(menu);
 		
