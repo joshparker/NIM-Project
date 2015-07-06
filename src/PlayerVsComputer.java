@@ -70,6 +70,9 @@ public class PlayerVsComputer {
 				while(!p1turn){
 
 					//insert Computer logic here
+					
+					
+					
 
 				}
 				if((row1 == 0 && row2 == 0 && row3 == 0)){
