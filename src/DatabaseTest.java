@@ -18,9 +18,19 @@ public class DatabaseTest {
 		db.updateValues(row2, 1);
 		System.out.println(db.getValue(row2));
 		System.out.println(db.appearances.get(row2));
-		db.updateValues(row2, .5);
-		System.out.println(db.getValue(row2));
-		System.out.println(db.appearances.get(row2));
+		
+		db.getNextMove("0-3-4");
+		
+		for(int i = 0; i < 50; i++){
+
+			db.updateValues(row2, .5);
+			System.out.println(db.getValue(row2));
+			System.out.println(db.appearances.get(row2));
+		}
+		
+		db.getNextMove(rows);
+		System.out.println("____________________________");
+		db.getNextMove("0-3-4");
 	}
 
 }

@@ -10,18 +10,33 @@ public class Database {
 	public Database(){
 	}
 
-	public String getNextMove(String current_game_state){
+	public String getNextMove(String current){
 
 		//take the current state of the board and return the highest rated next move from the Array/Hashtable
-
+		
+		String best_move = "0-0-0";
+		for(String s:(ArrayList<String>)this.getPossibleMoves(current)){
+			System.out.println("Possible move:"+s+", value: "+this.getValue(s));
+			if(this.getValue(best_move) < this.getValue(s)){
+				best_move = s;
+			}else if(this.getValue(best_move) == this.getValue(s)){
+				java.util.Random rand = new java.util.Random();
+				if(rand.nextInt(50) < 15){
+					best_move = s;
+				}
+			}
+		}
+		
+		System.out.println("Best move: "+best_move);
+		
+		
 		return null;
 	}
 
 	public void updateValues(String rows, double value){
 		
-		double newVal = ((value)+(values.get(rows)*appearances.get(rows))/((appearances.get(rows))+1));
-		System.err.println(newVal+", "+appearances.get(rows));
-		
+		double newVal = ((value)+(values.get(rows)*appearances.get(rows)))/((appearances.get(rows))+1);
+//		System.err.println(newVal+", "+appearances.get(rows));
 		values.put(rows, (Double)newVal);
 		appearances.put(rows, appearances.get(rows)+1);
 	}
@@ -75,12 +90,11 @@ public class Database {
 
 	}
 
-	public ArrayList getPossibleMoves(String current){
+	public ArrayList<String> getPossibleMoves(String current){
 
 		if(outcomes.get(current) == null){
 			this.pathGenerate(current);
 		}
-
 
 		return outcomes.get(current);
 	}
