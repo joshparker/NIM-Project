@@ -1,5 +1,4 @@
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 
@@ -9,12 +8,19 @@ public class DatabaseTest {
 	public void test() {
 		Database db = new Database();
 		
-//		db.pathGenerate("3-5-7");
-//		System.out.println("-----");
-//		db.pathGenerate("3-3-3");
+		String rows = "3-5-7";
 		
-		System.out.println(db.getPossibleMoves("3-5-7"));
-		System.out.println(db.getPossibleMoves("3-5-7").size());
+		String row2 = "0-3-3";
+		
+		System.out.println(db.getPossibleMoves(rows));
+		System.out.println(db.getValue(row2));
+		System.out.println(db.appearances.get(row2));
+		db.updateValues(row2, 1);
+		System.out.println(db.getValue(row2));
+		System.out.println(db.appearances.get(row2));
+		db.updateValues(row2, .5);
+		System.out.println(db.getValue(row2));
+		System.out.println(db.appearances.get(row2));
 	}
 
 }
