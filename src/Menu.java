@@ -6,6 +6,7 @@ public class Menu {
 
 	private UserInterface ui = new UserInterface();
 	private PlayerVsPlayer pvp = new PlayerVsPlayer();
+	private PlayerVsComputer pvc = new PlayerVsComputer();
 	private Scanner scan = new Scanner(System.in);
 
 	public void mainMenu(){
@@ -26,6 +27,8 @@ public class Menu {
 				else if (userIn == 2){
 
 					//Runs compuer vs player
+					pvc.pvcGame();
+					
 					menuLoop = playAgain();
 				}
 

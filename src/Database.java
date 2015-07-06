@@ -15,22 +15,24 @@ public class Database {
 		//take the current state of the board and return the highest rated next move from the Array/Hashtable
 		
 		String best_move = "0-0-0";
-		for(String s:(ArrayList<String>)this.getPossibleMoves(current)){
-			System.out.println("Possible move:"+s+", value: "+this.getValue(s));
-			if(this.getValue(best_move) < this.getValue(s)){
-				best_move = s;
-			}else if(this.getValue(best_move) == this.getValue(s)){
-				java.util.Random rand = new java.util.Random();
-				if(rand.nextInt(50) < 15){
+		while(best_move == "0-0-0"){
+			for(String s:(ArrayList<String>)this.getPossibleMoves(current)){
+//				System.out.println("Possible move:"+s+", value: "+this.getValue(s));
+				if(this.getValue(best_move) < this.getValue(s)){
 					best_move = s;
+				}else if(this.getValue(best_move) == this.getValue(s)){
+					java.util.Random rand = new java.util.Random();
+					if(rand.nextInt(50) < 15){
+						best_move = s;
+					}
 				}
 			}
 		}
 		
-		System.out.println("Best move: "+best_move);
+//		System.out.println("Best move: "+best_move);
 		
 		
-		return null;
+		return best_move;
 	}
 
 	public void updateValues(String rows, double value){
@@ -43,7 +45,7 @@ public class Database {
 
 	public double getValue(String rows){
 		if(!values.containsKey(rows)){
-			System.err.println("New Key");
+//			System.err.println("New Key");
 			values.put(rows, 0.0);
 			appearances.put(rows, 0);
 		}

@@ -1,9 +1,11 @@
 
 public class Main {
 
+	public static Database db;
+	
 	public static void main(String[] args) {
 		
-		Database db = new Database();
+		db = new Database();
 		
 		new Menu().mainMenu();
 		

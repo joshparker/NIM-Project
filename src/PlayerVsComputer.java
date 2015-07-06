@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PlayerVsComputer {
@@ -14,6 +15,9 @@ public class PlayerVsComputer {
 		int row2 = 5;
 		int row3 = 7;
 
+		ArrayList<String> playerMoves = new ArrayList<String>();
+		ArrayList<String> computerMoves = new ArrayList<String>();
+		
 		while(!gamewin){
 			String rows = "(1) " + row1 + "\n"
 					+ "(2) " + row2 + "\n"
@@ -58,6 +62,7 @@ public class PlayerVsComputer {
 							System.out.println("That is not a valid row");
 						}
 					}
+					computerMoves.add(row1+"-"+row2+"-"+row3);
 					if((row1 == 0 && row2 == 0 && row3 == 0)){
 						System.out.println("Computer wins!!!");
 						gamewin = true;
@@ -68,18 +73,29 @@ public class PlayerVsComputer {
 				System.out.println("Computers turn");
 				turntaken = false;
 				while(!p1turn){
-
-					//insert Computer logic here
 					
+					String[] roes = (Main.db.getNextMove(row1+"-"+row2+"-"+row3)).split("-");
+					row1 = Integer.parseInt(roes[0]);
+					row2 = Integer.parseInt(roes[1]);
+					row3 = Integer.parseInt(roes[2]);
 					
+					System.out.println("The computer has ended its turn.");
+					p1turn = true;
 					
 
 				}
+				playerMoves.add(row1+"-"+row2+"-"+row3);
 				if((row1 == 0 && row2 == 0 && row3 == 0)){
 					System.out.println("Player 1 wins!!!");
 					gamewin = true;
 				}
 			}
 		}
+
+		System.out.println("Player's moves: "+playerMoves);
+		System.out.println("Computer's moves: "+computerMoves);
+		
+		
+		//calculate values here
 	}
 }
