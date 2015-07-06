@@ -36,16 +36,16 @@ public class Database {
 			for(int b = 0; b < bort[a]; b++){
 				switch(a){
 				case 0:
-//					System.out.println(b+"-"+bort[1]+"-"+bort[2]);
 					outcomez.add(b+"-"+bort[1]+"-"+bort[2]);
+					this.updateValues(b+"-"+bort[1]+"-"+bort[2], 0.0);
 					break;
 				case 1:
-//					System.out.println(bort[0]+"-"+b+"-"+bort[2]);
 					outcomez.add(bort[0]+"-"+b+"-"+bort[2]);
+					this.updateValues(bort[0]+"-"+b+"-"+bort[2], 0.0);
 					break;
 				case 2:
-//					System.out.println(bort[0]+"-"+bort[1]+"-"+b);
 					outcomez.add(bort[0]+"-"+bort[1]+"-"+b);
+					this.updateValues(bort[0]+"-"+bort[1]+"-"+b,0.0);
 					break;
 				}
 			}
