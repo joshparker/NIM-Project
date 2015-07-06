@@ -18,7 +18,10 @@ public class Database {
 	}
 
 	public void updateValues(String rows, double value){
+		
 		double newVal = ((value)+(values.get(rows)*appearances.get(rows))/((appearances.get(rows))+1));
+		System.err.println(newVal+", "+appearances.get(rows));
+		
 		values.put(rows, (Double)newVal);
 		appearances.put(rows, appearances.get(rows)+1);
 	}
