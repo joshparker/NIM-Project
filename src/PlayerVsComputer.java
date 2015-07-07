@@ -12,7 +12,7 @@ public class PlayerVsComputer {
 
 	public void pvcGame(){
 		gamewin = false;
-		p1turn = true;
+		p1turn = new java.util.Random().nextBoolean();
 		int row1 = 3;
 		int row2 = 5;
 		int row3 = 7;
@@ -66,6 +66,7 @@ public class PlayerVsComputer {
 							System.out.println("That is not a valid row");
 						}
 					}
+					//playermoves indicates what they JUST created
 					playerMoves.add(row1+"-"+row2+"-"+row3);
 					if((row1 == 0 && row2 == 0 && row3 == 0)){
 						System.out.println("Computer wins!!!");
@@ -105,7 +106,7 @@ public class PlayerVsComputer {
 		switch(win){
 		case COMPUTER:
 			for(int i = 1; i < playerMoves.size()+1; i++){
-				System.out.println("I::"+i+" moves::"+playerMoves.size()+1);
+//				System.out.println("I::"+i+" moves::"+playerMoves.size()+1);
 				Menu.data.updateValues(playerMoves.get(i-1), (double)-i/((double)playerMoves.size()+1));
 			}
 			for(int i = 1; i < computerMoves.size()+1; i++){

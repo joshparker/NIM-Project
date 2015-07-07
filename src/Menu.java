@@ -43,7 +43,15 @@ public class Menu {
 				for(int i = 0; i < runtime; i++){
 					System.out.println("Game "+i);
 					cvc = new ComputerVsComputer();
-					cvc.cvcGame();
+					cvc.cvcGame(i > (3*runtime/4));
+//					cvc.cvcGame(true);
+					
+					
+//					 try {
+//					 	Thread.sleep(10000);
+//					 } catch (InterruptedException e) {
+//					 	e.printStackTrace();
+//					 }
 
 				}
 				break;

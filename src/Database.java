@@ -8,10 +8,10 @@ public class Database {
 	private Hashtable<String, Double> values = new Hashtable<String, Double>();
 
 	public Database(){
-		values.put("0-0-0", 1.0);
-		values.put("1-0-0", -1.0);
-		values.put("0-1-0", -1.0);
-		values.put("0-0-1", -1.0);
+		values.put("0-0-0", -1.0);
+		values.put("1-0-0", 1.0);
+		values.put("0-1-0", 1.0);
+		values.put("0-0-1", 1.0);
 	}
 
 	public String getNextMove(String current){
@@ -29,18 +29,18 @@ public class Database {
 			
 			for(String s:(ArrayList<String>)this.getPossibleMoves(current)){
 //				System.out.println("S :: "+s+" :: "+this.getValue(s));
-				if(this.getValue(best_move) > this.getValue(s)){
+				if(this.getValue(best_move) < this.getValue(s)){
 					best_move = s;
 				}else if(this.getValue(best_move) == this.getValue(s)){
 					java.util.Random rand = new java.util.Random();
-					if(rand.nextInt(2) == 0){
+					if(rand.nextBoolean()){
 						best_move = s;
 					}
 				}
 			}
 			
 			
-//			System.out.println(best_move);
+
 			if(!(current.equals("1-0-0") || current.equals("0-1-0") || current.equals("0-0-1"))){
 				if(!best_move.equals("0-0-0")){
 					runagain = false;
@@ -48,29 +48,26 @@ public class Database {
 			}else{
 				runagain = false;
 			}
-//			try {
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 		}
-
-		//		System.out.println("Best move: "+best_move);
 
 
 		return best_move;
 	}
 
+	
+	public String getRandMove(String current){
+		String move = "0-0-0";
+		move = this.getPossibleMoves(current).get(new java.util.Random().nextInt(this.getPossibleMoves(current).size()));
+		return move;
+	}
+	
 	public void updateValues(String rows, double value){
 
 		if(!appearances.containsKey(rows)){
-			//			System.out.println("KEY NOT FOUND");
 			appearances.put(rows, 0);
 		}
 
 		if(!values.containsKey(rows)){
-			//			System.out.println("KEY NOT FOUND");
 			values.put(rows, 0.0);
 		}
 
@@ -86,10 +83,10 @@ public class Database {
 			appearances.put(rows, 0);
 		}
 		if( ( rows.equals("1-0-0") || rows.equals("0-1-0") || rows.equals("0-0-1") ) ){
-			values.put(rows, -1.0);
+			values.put(rows, 1.0);
 		}
 		if( rows.equals("0-0-0")){
-			values.put(rows, 1.0);
+			values.put(rows, -1.0);
 		}
 
 		return values.get(rows);
