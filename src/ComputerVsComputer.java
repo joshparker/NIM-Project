@@ -25,7 +25,7 @@ public class ComputerVsComputer {
 		
 		while(!gamewin){
 			if(p1turn){
-				System.out.println("C1's turn");
+//				System.out.println("C1's turn");
 				turntaken = false;
 				while(p1turn){
 					String[] roes = (Menu.data.getNextMove(row1+"-"+row2+"-"+row3)).split("-");
@@ -41,7 +41,7 @@ public class ComputerVsComputer {
 				}
 			}////////play1turn end
 			else if (!p1turn){
-				System.out.println("C2's turn");
+//				System.out.println("C2's turn");
 				turntaken = false;
 				while(!p1turn){
 					String[] roes = (Menu.data.getNextMove(row1+"-"+row2+"-"+row3)).split("-");
@@ -91,13 +91,12 @@ public class ComputerVsComputer {
 		
 		System.out.println("C1's moves: "+playerMoves);
 		System.out.println("C2's moves: "+computerMoves);
-		for(int i = 0; i < playerMoves.size(); i++){
-			System.out.println(playerMoves.get(i)+"::"+Menu.data.getValue(playerMoves.get(i)));
-		}
-		for(int i = 0; i < computerMoves.size(); i++){
-			System.out.println(computerMoves.get(i)+"::"+Menu.data.getValue(computerMoves.get(i)));
-		}
-		
-		System.out.println("Game Over");
+//		for(int i = 0; i < playerMoves.size(); i++){
+//			System.out.println(playerMoves.get(i)+"::"+Menu.data.getValue(playerMoves.get(i)));
+//		}
+//		for(int i = 0; i < computerMoves.size(); i++){
+//			System.out.println(computerMoves.get(i)+"::"+Menu.data.getValue(computerMoves.get(i)));
+//		}
+//		System.out.println("Game Over");
 	}
 }

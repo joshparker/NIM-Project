@@ -40,7 +40,7 @@ public class Database {
 			}
 			
 			
-			System.out.println(best_move);
+//			System.out.println(best_move);
 			if(!(current.equals("1-0-0") || current.equals("0-1-0") || current.equals("0-0-1"))){
 				if(!best_move.equals("0-0-0")){
 					runagain = false;
@@ -48,12 +48,12 @@ public class Database {
 			}else{
 				runagain = false;
 			}
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		}
 
 		//		System.out.println("Best move: "+best_move);

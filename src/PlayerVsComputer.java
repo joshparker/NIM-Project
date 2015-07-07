@@ -66,7 +66,7 @@ public class PlayerVsComputer {
 							System.out.println("That is not a valid row");
 						}
 					}
-					computerMoves.add(row1+"-"+row2+"-"+row3);
+					playerMoves.add(row1+"-"+row2+"-"+row3);
 					if((row1 == 0 && row2 == 0 && row3 == 0)){
 						System.out.println("Computer wins!!!");
 						win = winner.COMPUTER;
@@ -89,7 +89,7 @@ public class PlayerVsComputer {
 					
 
 				}
-				playerMoves.add(row1+"-"+row2+"-"+row3);
+				computerMoves.add(row1+"-"+row2+"-"+row3);
 				if((row1 == 0 && row2 == 0 && row3 == 0)){
 					System.out.println("Player 1 wins!!!");
 					win = winner.PLAYER;
@@ -104,7 +104,6 @@ public class PlayerVsComputer {
 		//calculate values here
 		switch(win){
 		case COMPUTER:
-			System.out.println("Computer 1 wins");
 			for(int i = 1; i < playerMoves.size()+1; i++){
 				System.out.println("I::"+i+" moves::"+playerMoves.size()+1);
 				Menu.data.updateValues(playerMoves.get(i-1), (double)-i/((double)playerMoves.size()+1));
@@ -114,7 +113,6 @@ public class PlayerVsComputer {
 			}
 			break;
 		case PLAYER:
-			System.out.println("Computer 0 wins");
 			for(int i = 1; i < playerMoves.size()+1; i++){
 				Menu.data.updateValues(playerMoves.get(i-1), (double)i/((double)playerMoves.size()+1));
 			}
