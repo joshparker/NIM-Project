@@ -8,46 +8,88 @@ public class Database {
 	private Hashtable<String, Double> values = new Hashtable<String, Double>();
 
 	public Database(){
+		values.put("0-0-0", 1.0);
+		values.put("1-0-0", -1.0);
+		values.put("0-1-0", -1.0);
+		values.put("0-0-1", -1.0);
 	}
 
 	public String getNextMove(String current){
-
 		//take the current state of the board and return the highest rated next move from the Array/Hashtable
-		
+
 		String best_move = "0-0-0";
-		while(best_move == "0-0-0"){
+		values.remove("0-0-0");
+		values.put("0-0-0", -1.0);
+		//making DAMN sure 0-0-0 has a bad value
+		boolean runagain = true;
+		while(runagain){
+//			System.out.println("Current "+current);
+//			System.out.println("Possible moves: "+this.getPossibleMoves(current));
+			
+			
 			for(String s:(ArrayList<String>)this.getPossibleMoves(current)){
-//				System.out.println("Possible move:"+s+", value: "+this.getValue(s));
-				if(this.getValue(best_move) < this.getValue(s)){
+//				System.out.println("S :: "+s+" :: "+this.getValue(s));
+				if(this.getValue(best_move) > this.getValue(s)){
 					best_move = s;
 				}else if(this.getValue(best_move) == this.getValue(s)){
 					java.util.Random rand = new java.util.Random();
-					if(rand.nextInt(50) < 15){
+					if(rand.nextInt(2) == 0){
 						best_move = s;
 					}
 				}
 			}
+			
+			
+			System.out.println(best_move);
+			if(!(current.equals("1-0-0") || current.equals("0-1-0") || current.equals("0-0-1"))){
+				if(!best_move.equals("0-0-0")){
+					runagain = false;
+				}
+			}else{
+				runagain = false;
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-//		System.out.println("Best move: "+best_move);
-		
-		
+
+		//		System.out.println("Best move: "+best_move);
+
+
 		return best_move;
 	}
 
 	public void updateValues(String rows, double value){
-		
+
+		if(!appearances.containsKey(rows)){
+			//			System.out.println("KEY NOT FOUND");
+			appearances.put(rows, 0);
+		}
+
+		if(!values.containsKey(rows)){
+			//			System.out.println("KEY NOT FOUND");
+			values.put(rows, 0.0);
+		}
+
 		double newVal = ((value)+(values.get(rows)*appearances.get(rows)))/((appearances.get(rows))+1);
-//		System.err.println(newVal+", "+appearances.get(rows));
+		//		System.err.println(newVal+", "+appearances.get(rows));
 		values.put(rows, (Double)newVal);
 		appearances.put(rows, appearances.get(rows)+1);
 	}
 
 	public double getValue(String rows){
-		if(!values.containsKey(rows)){
-//			System.err.println("New Key");
+		if(!values.containsKey(rows) ){
 			values.put(rows, 0.0);
 			appearances.put(rows, 0);
+		}
+		if( ( rows.equals("1-0-0") || rows.equals("0-1-0") || rows.equals("0-0-1") ) ){
+			values.put(rows, -1.0);
+		}
+		if( rows.equals("0-0-0")){
+			values.put(rows, 1.0);
 		}
 
 		return values.get(rows);

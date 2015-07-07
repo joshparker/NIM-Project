@@ -7,7 +7,9 @@ public class Menu {
 	private UserInterface ui = new UserInterface();
 	private PlayerVsPlayer pvp = new PlayerVsPlayer();
 	private PlayerVsComputer pvc = new PlayerVsComputer();
+	private ComputerVsComputer cvc = new ComputerVsComputer();
 	private Scanner scan = new Scanner(System.in);
+	public static Database data = new Database();
 
 	public void mainMenu(){
 
@@ -27,6 +29,7 @@ public class Menu {
 				else if (userIn == 2){
 
 					//Runs compuer vs player
+					pvc = new PlayerVsComputer();
 					pvc.pvcGame();
 					
 					menuLoop = playAgain();
@@ -35,6 +38,20 @@ public class Menu {
 				else if (userIn == 3){
 
 					//Runs computer vs computer
+					System.out.println("How many times should the computer play against itself?");
+					int runtime = scan.nextInt();
+					for(int i = 0; i < runtime; i++){
+						System.out.println("Game "+i);
+						cvc = new ComputerVsComputer();
+						cvc.cvcGame();
+						
+						try {
+							Thread.sleep(5000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
 					menuLoop = playAgain();
 
 				}

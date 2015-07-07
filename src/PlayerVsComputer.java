@@ -6,6 +6,8 @@ public class PlayerVsComputer {
 	private boolean gamewin;
 	private boolean p1turn;
 	private boolean turntaken;
+	private enum winner{ PLAYER, COMPUTER };
+	private winner win;
 	private Scanner scan = new Scanner(System.in);
 
 	public void pvcGame(){
@@ -17,6 +19,8 @@ public class PlayerVsComputer {
 
 		ArrayList<String> playerMoves = new ArrayList<String>();
 		ArrayList<String> computerMoves = new ArrayList<String>();
+		playerMoves.clear();
+		computerMoves.clear();
 		
 		while(!gamewin){
 			String rows = "(1) " + row1 + "\n"
@@ -65,6 +69,7 @@ public class PlayerVsComputer {
 					computerMoves.add(row1+"-"+row2+"-"+row3);
 					if((row1 == 0 && row2 == 0 && row3 == 0)){
 						System.out.println("Computer wins!!!");
+						win = winner.COMPUTER;
 						gamewin = true;
 					}
 				}
@@ -87,6 +92,7 @@ public class PlayerVsComputer {
 				playerMoves.add(row1+"-"+row2+"-"+row3);
 				if((row1 == 0 && row2 == 0 && row3 == 0)){
 					System.out.println("Player 1 wins!!!");
+					win = winner.PLAYER;
 					gamewin = true;
 				}
 			}
@@ -95,7 +101,30 @@ public class PlayerVsComputer {
 		System.out.println("Player's moves: "+playerMoves);
 		System.out.println("Computer's moves: "+computerMoves);
 		
-		
 		//calculate values here
+		switch(win){
+		case COMPUTER:
+			System.out.println("Computer 1 wins");
+			for(int i = 1; i < playerMoves.size()+1; i++){
+				System.out.println("I::"+i+" moves::"+playerMoves.size()+1);
+				Menu.data.updateValues(playerMoves.get(i-1), (double)-i/((double)playerMoves.size()+1));
+			}
+			for(int i = 1; i < computerMoves.size()+1; i++){
+				Menu.data.updateValues(computerMoves.get(i-1), (double)i/((double)computerMoves.size()+1));
+			}
+			break;
+		case PLAYER:
+			System.out.println("Computer 0 wins");
+			for(int i = 1; i < playerMoves.size()+1; i++){
+				Menu.data.updateValues(playerMoves.get(i-1), (double)i/((double)playerMoves.size()+1));
+			}
+			for(int i = 1; i < computerMoves.size()+1; i++){
+				Menu.data.updateValues(computerMoves.get(i-1), (double)-i/((double)computerMoves.size()+1));
+			}
+			break;
+		default:
+			System.err.println("GAME IS BROKEN, BLAME THE DEVS");
+			break;
+		}
 	}
 }
